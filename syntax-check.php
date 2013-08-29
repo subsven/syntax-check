@@ -19,6 +19,12 @@
  * === This is public domain! ===
  */
 
+/* ------------------------------------------------------------------------ */
+
+$jslint = '/citools/tools/static/javascript/jsl/0.3.0/jsl -conf /citools/tools/static/javascript/jsl/0.3.0/jsl.conf';
+
+/* ------------------------------------------------------------------------ */
+
 ini_set('track_errors', true);
 
 $mode_definitions = array(
@@ -34,7 +40,7 @@ $mode_definitions = array(
   ),
   'javascript' => array(
     'suffixes' => array('js', 'json'),
-    'lint' => '/app1/cmcwork/jsl-0.3.0/jsl -conf /app1/cmcwork/jsl-0.3.0/jsl.conf -process',
+    'lint' => $jslint,
     'return_codes_ok' => array(0, 1),
   ),
   'perl' => array(
@@ -67,7 +73,7 @@ function run($path, $conf, &$results)
       RecursiveIteratorIterator::SELF_FIRST);
   foreach($objects as $filename => $object)
   {
-    processFile($filename, $conf, &$results);
+    processFile($filename, $conf, $results);
   }
 }
 
